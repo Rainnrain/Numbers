@@ -1,6 +1,8 @@
 package com.lorraine;
 
 
+import org.eclipse.microprofile.openapi.annotations.Operation;
+import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
@@ -10,7 +12,7 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import java.time.Instant;
 import java.util.Random;
-
+@Tag(name="Number REST Endpoint")
 @Path("/api/numbers")
 public class NumberResource {
 
@@ -19,6 +21,9 @@ public class NumberResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Operation(
+    summary="Generates books numbers",
+    description="ISBN Numbers")
     public IsbnNumbers generateIsbnNumbers() {
         IsbnNumbers isbnNumbers= new IsbnNumbers();
         isbnNumbers.isbn13="13-"+ new Random().nextInt(100_000_000);
